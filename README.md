@@ -130,3 +130,65 @@ JTTP Response:
     }
 }
 ```
+
+## HATEOAS + HAL implementation
+Even if HAL is [currently in draft status](https://tools.ietf.org/html/draft-kelly-json-hal-08), we have implemented it by following its latest definition.
+Here's below an example
+#### GET /books
+```json
+{
+    "status": "success",
+    "code": 200,
+    "message": "OK",
+    "data": [
+        {
+            "id": 1,
+            "title": "JTTP is awesome",
+            "pages": 1000,
+            "_links": {
+                "self": {
+                    "href": "/books/1"
+                },
+                "next": {
+                    "href": "/books/2"
+                }
+            },
+            "_embedded": {
+                "author": {
+                    "id": 1,
+                    "name": "Riccardo De Martis",
+                    "_links": {
+                        "self": {
+                            "href": "/authors/1"
+                        }                   
+                    }
+                }
+            }
+        },
+        {
+            "id": 2,
+            "title": "RESTful services",
+            "pages": 1200,
+            "_links": {
+                "self": {
+                    "href": "/books/2"
+                },
+                "prev": {
+                    "href": "/books/1"
+                }
+            },
+            "_embedded": {
+                "author": {
+                    "id": 2,
+                    "name": "Someone",
+                    "_links": {
+                        "self": {
+                            "href": "/authors/2"
+                        }                   
+                    }
+                }
+            }
+        }
+    ]
+}
+```
