@@ -41,3 +41,92 @@ JTTP is compatible with HATEOAS, RFC5988 and HAL standards.
     }
 }
 ```
+
+--------
+
+## Examples
+
+#### GET /books
+```json
+{
+    "status": "success",
+    "code": 200,
+    "message": "OK",
+    "data": [
+        {
+            "id": 1,
+            "title": "JTTP is awesome",
+            "pages": 1000
+        },
+        {
+            "id": 2,
+            "title": "RESTful services",
+            "pages": 1200
+        }
+    ]
+}
+```
+
+#### GET /books/1
+```json
+{
+    "status": "success",
+    "code": 200,
+    "message": "OK",
+    "data": {
+        "id": 1,
+        "title": "JTTP is awesome",
+        "pages": 1000
+    }
+}
+```
+
+#### POST /books with payload:
+```json
+{
+    "data": {
+        "title": "JTTP is awesome",
+        "pages": 1000
+    }
+}
+```
+JTTP Response:
+```json
+{
+    "status": "success",
+    "code": 201,
+    "message": "OK",
+    "data": [
+        {
+            "id": 1,
+            "title": "JTTP is awesome",
+            "pages": 1000
+        }
+    ]
+}
+```
+
+#### Example - error: Resource not found: GET /books/123123
+```json
+{
+    "status": "error",
+    "code": 404,
+    "message": "Not Found",
+    "error": {
+        "details": "Resource 123123 not found"
+    }
+}
+```
+
+#### Example - 500 Internal Server Error
+(your server should avoid these errors!)
+```json
+{
+    "status": "error",
+    "code": 500,
+    "message": "Internal Server Error",
+    "error": {
+        "details": "Notice: Undefined variable: unknown_var"
+    }
+}
+```
