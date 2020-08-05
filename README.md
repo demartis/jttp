@@ -17,3 +17,27 @@ JTTP is compatible with HATEOAS, RFC5988 and HAL standards.
     }
 }
 ```
+
+## JTTP for success - HTTP status codes 1xx, 2xx, 3xx
+```json
+{
+    "status": "success",
+    "code": "HTTP status code (1xx, 2xx, 3xx)",
+    "message": "HTTP status message",
+    "data": {
+      "your data": "content"
+    }
+}
+```
+
+## JTTP for error - HTTP status codes 4xx, 5xx
+```json
+{
+    "status": "error",
+    "code": "HTTP status code (4xx, 5xx)",
+    "message": "HTTP status message",
+    "error": {
+      "your error": "error content"
+    }
+}
+```
